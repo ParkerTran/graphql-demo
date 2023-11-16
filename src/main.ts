@@ -101,7 +101,7 @@ import { gql } from 'graphql-modules';
       if (url === SERVICE_LIST.MM) {
         return new LocalGraphQLDataSource(
           applyMiddleware(
-            buildFederatedSchema(
+            buildSubgraphSchema(
               {
                 typeDefs: AppModule.typeDefs,
                 resolvers: AppModule.resolvers,
@@ -117,8 +117,8 @@ import { gql } from 'graphql-modules';
   
   });
   const server = new ApolloServer({
-    // gateway,
-    schema: AppModule.createSchemaForApollo(),
+    gateway,
+    // schema: AppModule.createSchemaForApollo(),
     // schema: buildSubgraphSchema({ typeDefs, resolvers }),
     plugins: [
       ApolloServerPluginCacheControl({
